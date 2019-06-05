@@ -30,7 +30,7 @@ namespace PWLogin
         {
             server = "localhost";
             port = "3306";
-            database = "pandawallet";
+            database = "pandawdb";
             uid = "root";
             password = "";
             string connectionString;
@@ -53,6 +53,31 @@ namespace PWLogin
             if (uniqueInstance == null)
                 uniqueInstance = new SingleDB();
             return uniqueInstance;
+        }
+        public string getUser(string searchFor)
+        {
+           
+            MySqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "SELECT username FROM users WHERE username=" + searchFor;
+            try
+            {
+                connection.Open();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            MySqlDataReader reader = comm.ExecuteReader();
+            while (reader.Read())
+            {
+                if (!reader[0].Equals(searchFor))
+                {
+                    Console.WriteLine("Nincs ilyen felhasználó");
+                }
+                else
+                    return reader[0].ToString();
+            }
+            return reader[0].ToString();
         }
 
     }

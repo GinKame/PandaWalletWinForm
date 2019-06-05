@@ -12,9 +12,24 @@ namespace PWLogin
 {
     public partial class Form1 : Form
     {
+        SingleDB sdb = SingleDB.getInstance();
+
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void login_btn_Click(object sender, EventArgs e)
+        {
+            if(nameTextBox.Text == sdb.getUser(nameTextBox.Text))
+                {
+
+            }
+        }
+
+        private void reg_btn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
