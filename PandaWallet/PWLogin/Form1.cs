@@ -23,13 +23,17 @@ namespace PWLogin
         {
             if(nameTextBox.Text == sdb.getUser(nameTextBox.Text))
                 {
-
+                PWRegister registerForm = new PWRegister();
+                this.Hide();
+                registerForm.ShowDialog();
             }
         }
 
         private void reg_btn_Click(object sender, EventArgs e)
         {
-
+            PWRegister registerForm = new PWRegister();
+            this.Hide();
+            registerForm.ShowDialog();
         }
     }
 }

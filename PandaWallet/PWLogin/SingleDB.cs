@@ -58,7 +58,7 @@ namespace PWLogin
         {
            
             MySqlCommand comm = connection.CreateCommand();
-            comm.CommandText = "SELECT username FROM users WHERE username=" + searchFor;
+            comm.CommandText = "SELECT username FROM users WHERE username= '"+searchFor+"'";
             try
             {
                 connection.Open();
