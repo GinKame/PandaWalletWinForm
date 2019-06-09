@@ -9,6 +9,7 @@ using MySql.Data.MySqlClient;
 namespace PWLogin
 {
     public enum selectFromUsers { username, email }
+    public enum selectIdOrPw { id, password }
     /// <summary>
     /// Adatbázis kapcsolat létesítés singletonnal
     /// </summary>
@@ -62,7 +63,7 @@ namespace PWLogin
         /// <param name="what">Kiválasztja melyik mezőt kérjük le az adatbázisból</param>
         /// <param name="searchFor">Az adatbázisban keresett érték</param>
         /// <returns></returns>
-        public string getFromUsers(selectFromUsers what, string searchFor)
+        public string Select(selectFromUsers what, string searchFor)
         {
             string s = null;
             MySqlCommand comm = connection.CreateCommand();
@@ -99,11 +100,12 @@ namespace PWLogin
         /// </summary>
         /// <param name="text">A keresett érték</param>
         /// <returns></returns>
-        public string getPassword(string text)
+        public string SelectByIdentity(selectIdOrPw what, string text)
         {
+            string s = null;
 
             MySqlCommand comm = connection.CreateCommand();
-            comm.CommandText = "SELECT password FROM users WHERE username= '" + text + "' OR email= '" + text + "'";
+            comm.CommandText = "SELECT " + what + " FROM users WHERE username= '" + text + "' OR email= '" + text + "'";
             try
             {
                 connection.Open();
@@ -113,7 +115,6 @@ namespace PWLogin
                 Console.WriteLine(ex.Message);
             }
             MySqlDataReader reader = comm.ExecuteReader();
-            reader.Read();
             while (reader.Read())
             {
                 if (!reader[0].Equals(password))
@@ -121,14 +122,18 @@ namespace PWLogin
                     Console.WriteLine("Nincs ilyen felhasználó");
                 }
                 else
-                    return reader[0].ToString();
+                {
+                    s = reader[0].ToString();
+                }
             }
-            reader.Read();
-            return reader[0].ToString();
+            s = reader[0].ToString();
+            reader.Close();
+            connection.Close();
+            return s;
         }
 
 
-        public void InstertToUsers(string uname, string password, string email)
+        public void InsertToUsers(string uname, string password, string email)
         {
             MySqlCommand comm = connection.CreateCommand();
             comm.CommandText = "INSERT INTO users (username, password, email) values ('" + uname + "','" + password + "','" + email + "')";
@@ -146,5 +151,25 @@ namespace PWLogin
             connection.Close();
         }
 
+
+        public void InsertToMoneyFlow(int value, int isIncome, DateTime date, int userId)
+        {
+
+            MySqlCommand comm = connection.CreateCommand();
+            comm.CommandText = "INSERT INTO moneyflow ( value, isIncome, timeOfAdd, currentWealth, users_id) values ('" + value + "','" + isIncome + "','" + date + "','" + cw + "','" + userId + "')";
+            try
+            {
+                connection.Open();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            comm.ExecuteNonQuery();
+
+            connection.Close();
+
+        }
     }
 }

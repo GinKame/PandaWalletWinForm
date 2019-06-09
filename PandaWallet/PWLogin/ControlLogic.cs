@@ -8,6 +8,8 @@ namespace PWLogin
 {
     class ControlLogic
     {
+
+        public static string loggedInUser;
         static SingleDB sdb = SingleDB.getInstance();
 
         /// <summary>
@@ -19,22 +21,24 @@ namespace PWLogin
         public static void Login(string name, string password, Form1 form)
         {
 
-            if (name == sdb.getFromUsers(selectFromUsers.username, name))
+            if (name == sdb.Select(selectFromUsers.username, name))
             {
-                if (password == sdb.getPassword(name))
+                if (password == sdb.SelectByIdentity(selectIdOrPw.password, name))
                 {
-                    PWRegister registerForm = new PWRegister();
+                    loggedInUser = name;
+                    PWProgram program = new PWProgram();
                     form.Hide();
-                    registerForm.ShowDialog();
+                    program.ShowDialog();
                 }
             }
-            else if (name == sdb.getFromUsers(selectFromUsers.email, name))
+            else if (name == sdb.Select(selectFromUsers.email, name))
             {
-                if (password == sdb.getPassword(name))
+                if (password == sdb.SelectByIdentity(selectIdOrPw.password, name))
                 {
-                    PWRegister registerForm = new PWRegister();
+                    loggedInUser = name;
+                    PWProgram program = new PWProgram();
                     form.Hide();
-                    registerForm.ShowDialog();
+                    program.ShowDialog();
                 }
             }
         }
@@ -48,6 +52,41 @@ namespace PWLogin
             PWRegister registerForm = new PWRegister();
             form.Hide();
             registerForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// A regisztrációs form gombjának logikája
+        /// </summary>
+        /// <param name="uName">Megadott felhasználónév</param>
+        /// <param name="email">Megadott email cím</param>
+        /// <param name="passw">Megadott jelszó</param>
+        /// <param name="passw2">Megadott jelszó ismételten</param>
+        /// <param name="form">Maga a form, hogy bezárásra kerülhessen</param>
+        public static void RegRegister(string uName, string email, string passw, string passw2, PWRegister form)
+        {
+            if (sdb.Select(selectFromUsers.username, uName) == uName)
+                Console.WriteLine("Már létezik ilyen nevű felhasználó!");
+            else
+            {
+                if (!email.Contains("@") || !email.EndsWith(".hu") || !email.EndsWith(".com"))
+                    Console.WriteLine("Ez nem egy email cím!");
+                else if (sdb.Select(selectFromUsers.email, email) == email)
+                    Console.WriteLine("Ezzel az email címmel már regiszráltak!");
+                else
+                {
+                    if (passw != passw2)
+                    {
+                        Console.WriteLine("A két jelszó nem egyezik!");
+                    }
+                    else
+                    {
+                        sdb.InsertToUsers(uName, passw, email);
+                        Form1 logInForm = new Form1();
+                        form.Hide();
+                        logInForm.ShowDialog();
+                    }
+                }
+            }
         }
     }
 }

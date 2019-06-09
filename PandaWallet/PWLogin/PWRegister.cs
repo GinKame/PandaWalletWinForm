@@ -21,7 +21,7 @@ namespace PWLogin
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            ControlLogic.RegRegister(txtBox_uName.Text, txtBox_email.Text, txtBox_Password.Text, txtBox_Password2.Text, this);
         }
     }
 }

@@ -56,6 +56,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PWProgram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PWProgram.Designer.cs">
+      <DependentUpon>PWProgram.cs</DependentUpon>
+    </Compile>
     <Compile Include="PWRegister.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="PWProgram.resx">
+      <DependentUpon>PWProgram.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PWRegister.resx">
       <DependentUpon>PWRegister.cs</DependentUpon>
     </EmbeddedResource>

@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtBox_uName = new System.Windows.Forms.TextBox();
+            this.txtBox_email = new System.Windows.Forms.TextBox();
+            this.txtBox_Password = new System.Windows.Forms.TextBox();
+            this.txtBox_Password2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.lbl_username = new System.Windows.Forms.Label();
             this.lbl_email = new System.Windows.Forms.Label();
@@ -39,33 +39,33 @@
             this.lbl_password2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtBox_uName
             // 
-            this.textBox1.Location = new System.Drawing.Point(137, 28);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
+            this.txtBox_uName.Location = new System.Drawing.Point(137, 28);
+            this.txtBox_uName.Name = "txtBox_uName";
+            this.txtBox_uName.Size = new System.Drawing.Size(100, 20);
+            this.txtBox_uName.TabIndex = 0;
             // 
-            // textBox2
+            // txtBox_email
             // 
-            this.textBox2.Location = new System.Drawing.Point(137, 81);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
+            this.txtBox_email.Location = new System.Drawing.Point(137, 81);
+            this.txtBox_email.Name = "txtBox_email";
+            this.txtBox_email.Size = new System.Drawing.Size(100, 20);
+            this.txtBox_email.TabIndex = 1;
             // 
-            // textBox3
+            // txtBox_Password
             // 
-            this.textBox3.Location = new System.Drawing.Point(137, 135);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 2;
+            this.txtBox_Password.Location = new System.Drawing.Point(137, 135);
+            this.txtBox_Password.Name = "txtBox_Password";
+            this.txtBox_Password.Size = new System.Drawing.Size(100, 20);
+            this.txtBox_Password.TabIndex = 2;
             // 
-            // textBox4
+            // txtBox_Password2
             // 
-            this.textBox4.Location = new System.Drawing.Point(137, 190);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 3;
+            this.txtBox_Password2.Location = new System.Drawing.Point(137, 190);
+            this.txtBox_Password2.Name = "txtBox_Password2";
+            this.txtBox_Password2.Size = new System.Drawing.Size(100, 20);
+            this.txtBox_Password2.TabIndex = 3;
             // 
             // button1
             // 
@@ -123,10 +123,10 @@
             this.Controls.Add(this.lbl_email);
             this.Controls.Add(this.lbl_username);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtBox_Password2);
+            this.Controls.Add(this.txtBox_Password);
+            this.Controls.Add(this.txtBox_email);
+            this.Controls.Add(this.txtBox_uName);
             this.Name = "PWRegister";
             this.Text = "PWRegister";
             this.ResumeLayout(false);
@@ -136,10 +136,10 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtBox_uName;
+        private System.Windows.Forms.TextBox txtBox_email;
+        private System.Windows.Forms.TextBox txtBox_Password;
+        private System.Windows.Forms.TextBox txtBox_Password2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lbl_username;
         private System.Windows.Forms.Label lbl_email;
