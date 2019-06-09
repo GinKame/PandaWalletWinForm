@@ -33,7 +33,7 @@
             this.reg_btn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -81,19 +81,19 @@
             this.nameTextBox.Size = new System.Drawing.Size(148, 20);
             this.nameTextBox.TabIndex = 4;
             // 
-            // textBox2
+            // passwordTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(170, 84);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(148, 20);
-            this.textBox2.TabIndex = 5;
+            this.passwordTextBox.Location = new System.Drawing.Point(170, 84);
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.Size = new System.Drawing.Size(148, 20);
+            this.passwordTextBox.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 239);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.reg_btn);
@@ -113,7 +113,7 @@
         private System.Windows.Forms.Button reg_btn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox nameTextBox;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox passwordTextBox;
     }
 }
 
