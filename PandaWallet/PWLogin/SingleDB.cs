@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace PWLogin
 {
-    public enum selectFromUsers { username, email}
+    public enum selectFromUsers { username, email }
     /// <summary>
     /// Adatbázis kapcsolat létesítés singletonnal
     /// </summary>
@@ -41,7 +41,7 @@ namespace PWLogin
                                "PASSWORD=" + password + ";";
             connection = new MySqlConnection(connectionString);
             MySqlCommand comm = connection.CreateCommand();
-            
+
 
         }
 
@@ -55,16 +55,23 @@ namespace PWLogin
                 uniqueInstance = new SingleDB();
             return uniqueInstance;
         }
+
+        /// <summary>
+        /// Lekérdezi az adatbázisból az emailt vagy felhasználónevet
+        /// </summary>
+        /// <param name="what">Kiválasztja melyik mezőt kérjük le az adatbázisból</param>
+        /// <param name="searchFor">Az adatbázisban keresett érték</param>
+        /// <returns></returns>
         public string getFromUsers(selectFromUsers what, string searchFor)
         {
-           
+            string s = null;
             MySqlCommand comm = connection.CreateCommand();
-            comm.CommandText = "SELECT "+what+" FROM users WHERE "+what+"= '"+searchFor+"'";
+            comm.CommandText = "SELECT " + what + " FROM users WHERE " + what + "= '" + searchFor + "'";
             try
             {
                 connection.Open();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -77,17 +84,26 @@ namespace PWLogin
                 }
                 else
                 {
-                    return reader[0].ToString();
+                    s = reader[0].ToString();
 
                 }
-                
+
             }
-            return reader[0].ToString();
+            reader.Close();
+            connection.Close();
+            return s;
         }
+
+        /// <summary>
+        /// Lekérdezi a jelszót a felhasználónévhez, vagy emailcímhez
+        /// </summary>
+        /// <param name="text">A keresett érték</param>
+        /// <returns></returns>
         public string getPassword(string text)
         {
+
             MySqlCommand comm = connection.CreateCommand();
-            comm.CommandText = "SELECT password FROM users WHERE username= '" + text + "' OR email= '"+text+"'";
+            comm.CommandText = "SELECT password FROM users WHERE username= '" + text + "' OR email= '" + text + "'";
             try
             {
                 connection.Open();
@@ -97,6 +113,7 @@ namespace PWLogin
                 Console.WriteLine(ex.Message);
             }
             MySqlDataReader reader = comm.ExecuteReader();
+            reader.Read();
             while (reader.Read())
             {
                 if (!reader[0].Equals(password))
@@ -106,6 +123,7 @@ namespace PWLogin
                 else
                     return reader[0].ToString();
             }
+            reader.Read();
             return reader[0].ToString();
         }
 
